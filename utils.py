@@ -121,3 +121,81 @@ def plot_76GSvsKS(result_76GS, result_KS,input_gseid):
         os.makedirs(outfile)
     plt.savefig(outfile +'/76GSvsKS.png')
     plt.close()
+
+    
+    
+    
+
+# def MLRScore(geneExpMat,input_gseid):
+
+#     #RelevantData = np.load('./default_data/RelevantData.npy', allow_pickle=True).item()
+#     # RelevantData = scipy.io.loadmat('./default_data/RelevantData.mat')
+
+#     #Predictor + Normalizer gene expression to run MLR model for EMT prediction
+#     geneList = pd.read_csv("./Gene_signatures/MLR/genes_for_EMT_score.txt", header=None, delim_whitespace=True)
+#     geneList = pd.DataFrame(geneList)
+#     geneList.columns = ['MLR_genes']
+
+#     geneExpMat = geneList.merge(geneExpMat, left_on='MLR_genes', right_on='Gene Symbol')
+
+#     temp1 = set(geneExpMat['Gene Symbol'].tolist())
+#     temp2 = set(geneList['MLR_genes'].tolist())
+
+#     # Find the genes that are not common
+#     notFound = temp1.symmetric_difference(temp2)
+#     for i in notFound:
+#         print("Gene not found in dataset: " + str(i))
+
+#     geneExpMat = geneExpMat.drop(columns=['MLR_genes'])
+#     outfile = './geodata/' + input_gseid 
+#     if not os.path.exists(outfile):
+#         os.makedirs(outfile)
+#     geneExpMat.to_csv(outfile + '_MLR_exp_levels.csv', index=False) 
+
+#     #DataNCI60 = pd.read_csv("./default_data/DataNCI60.csv", header=None, delim_whitespace=True)
+#     #DataNCI60 = pd.read_excel('./default_data/RelevantData.xlsx', sheet_name='DataNCI60')
+
+#     data = geneExpMat.iloc[0:3,1:]
+
+#     norm_val = geneExpMat.iloc[5:25, 1:]
+
+
+
+#     #DataNCI60EMTGenes8 = pd.DataFrame(RelevantData['DataNCI60EMTGenes8'])
+#     #DataNCI60EMTGenes8 = pd.read_excel('./default_data/RelevantData.xlsx', sheet_name='DataNCI60EMTGenes8')
+#     DataNCI60EMTGenes8 = pd.read_csv('./default_data/DataNCI60EMTGenes8.txt', header=None, delim_whitespace=True)
+#     DataNCI60 = pd.read_csv('./default_data/DataNCI60.txt', header=None, delim_whitespace=True)
+#     b1 = 433-1
+#     b2 = 996-1
+
+#     # Pre-normalization scatterplots
+#     # 1. %(CLDN7, VIM/CDH1)
+
+#     b3, b4, b5 = 0,1,2
+#     plt.figure()
+#     plt.plot(0, 0, '.k')
+#     plt.plot(0, 0, '.b')
+#     plt.scatter(DataNCI60EMTGenes8.iloc[b1, :], DataNCI60EMTGenes8.iloc[b2, :], marker='*', color='black', label = 'NCI60')
+#     plt.scatter(data.iloc[b3, 1:], data.iloc[b4, 1:] / data.iloc[b5, 1:], marker='*', color='blue', label = 'DataGSE')
+#     plt.xlabel('CLDN7 Expression')
+#     plt.ylabel('VIM/CDH1 Expression')
+#     plt.legend()
+#     outfile = './graphs_generated/' + input_gseid 
+#     if not os.path.exists(outfile):
+#         os.makedirs(outfile)
+#     plt.savefig(outfile +'/prenormalization_scatterplot.png')
+    
+
+
+
+#     nci_indices = np.genfromtxt(dir_info[1], delimiter='\t', dtype=str)[5:24]
+#     NCI_data = DataNCI60[nci_indices.astype(int), :]
+#     NCIMean = np.nanmean(np.mean(NCI_data, axis=0))
+
+#     mean_val = np.mean(np.mean(norm_val, axis=0))
+#     d = mean_val - NCIMean
+#     NormDataGSE = data - d
+
+
+
+#     return "MLR Done"
