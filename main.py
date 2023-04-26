@@ -58,7 +58,7 @@ merged_table.to_csv(temp, index=False)
 # calculate 76GS , KS score
 score1 = EMT76GS(merged_table,input_gseid)
 score2 = KSScore(merged_table,input_gseid)
-
+score3 = MLRScore(merged_table,input_gseid)
 
 
 # plotting
