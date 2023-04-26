@@ -7,7 +7,7 @@ This project takes a GSEID as input and downloads the GSE dataset and implements
 
 Clone the repsitory
 ```
-git clone https://github.com/your-username/flask-app.git
+git clone https://github.com/Blassreiter0/EMT_score_python_implementation.git
 ```
 
 Create a virtual environment:
