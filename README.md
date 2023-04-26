@@ -1,6 +1,6 @@
 # EMT_score_python_implementation
 
-This project takes a GSEID as input and downloads the GSE dataset and implements certain algorithms to generate 76GS score. KS Score, MLR Score. 
+This project takes a GSEID as input and downloads the GSE dataset and implements certain algorithms to generate 76GS score, KS Score, and MLR Score. 
 
 
 ## Installation
