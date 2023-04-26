@@ -1,0 +1,5 @@
+GEOparse==2.0.3pand
+pandas==1.5.2
+numpy==1.23.4
+scipy==1.10.1
+matplotlib==3.6.1
