@@ -28,7 +28,10 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the main.py file from any IDE. Then enter the GSEID.
+go inside the repository using the command:
+cd .\EMT_score_python_implementation\
+
+Open the main.py file from any IDE. Run it and Then enter any GSEID(for Eg. GSE21422).
 
 
 
