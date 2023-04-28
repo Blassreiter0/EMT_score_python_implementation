@@ -34,4 +34,8 @@ cd .\EMT_score_python_implementation\
 Open the main.py file from any IDE. Run it and Then enter any GSEID(for Eg. GSE21422).
 
 
+## Credits
 
+This code is the python implementation of work from github projects:-<br>
+https://github.com/priyanka8993/EMT_score_calculation<br>
+https://github.com/sushimndl/EMT_Scoring_RNASeq
