@@ -140,12 +140,12 @@ def MLR3(A1, A2, A3, A4):
     else:
         index = []
         for j in range(A2.shape[0]):
-            temp = np.where(A3 == A2[j,0])
+            temp = np.where(A3 == np.array(A2.iloc[j,0]))
             index.append(temp[0][0])
         A7 = np.zeros((A2.shape[0],b))
         for j in range(A2.shape[0]):
-            A7[j,:] = A4[index[j],:]
-        A5 = mstats.mnrval(A1[:,0], A7.T, method='ordinal')
+            A7[j,:] = A4.iloc[index[j],:]
+        A5 = mnrval(A1.iloc[:,0], A7.T, method='ordinal')
         A6 = np.zeros((b,1))
         for j in range(b):
             if np.array_equal(A5[j,:], np.nan*np.ones((1,A1.shape[0]-1))):
