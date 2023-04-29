@@ -1,5 +1,8 @@
-GEOparse==2.0.3pand
-pandas==1.5.2
-numpy==1.23.4
-scipy==1.10.1
+GEOparse==2.0.3
+matlab==0.1
 matplotlib==3.6.1
+numpy==1.23.4
+pandas==1.5.2
+scipy==1.10.1
+setuptools==57.4.0
+wheel==0.38.4
