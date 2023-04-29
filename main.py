@@ -3,10 +3,21 @@ import pandas as pd
 import numpy as np
 from utils import *
 import sys
+import os
+import subprocess
+
+
+
+# installing necessary python packages.
+os.chdir('./default_data')
+subprocess.call(['python', 'setup.py', 'install'])
+os.chdir('..')
+
 
 
 
 input_gseid = str(input("Enter the GSE id: "))
+# input_gseid = "GSE21422"
 
 gse = GEOparse.get_GEO(geo=input_gseid, destdir="./geodata")
 
@@ -15,6 +26,7 @@ gse_table = gse.pivot_samples('VALUE')
 
 # download the platform from GEO
 gpl_id = gse.metadata['platform_id'][0]
+# gpl_id = "GPL570"
 gpl = GEOparse.get_GEO(geo=gpl_id, destdir='./geodata')
 
 # make the annotation data
@@ -55,11 +67,10 @@ temp = "./geodata/" + input_gseid + "_gene_expression_log2_mean.csv"
 merged_table.to_csv(temp, index=False)
 
 
-# calculate 76GS , KS score
+# calculate 76GS , KS score, and MLR score.
 score1 = EMT76GS(merged_table,input_gseid)
 score2 = KSScore(merged_table,input_gseid)
 score3 = MLRScore(merged_table,input_gseid,annot_table)
 
-
 # plotting
-plot_76GSvsKS(score1,score2,input_gseid)
+plot_76GSvsKS(score1,score2,score3,input_gseid)
