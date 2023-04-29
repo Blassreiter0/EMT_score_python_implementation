@@ -40,5 +40,5 @@ This code is the python implementation of work from github projects:-<br>
 https://github.com/priyanka8993/EMT_score_calculation<br>
 https://github.com/sushimndl/EMT_Scoring_RNASeq<br>
 <br>
-for more information:<br>
+for more information:<br><br>
 Chakraborty P, George JT, Tripathi S, Levine H and Jolly MK (2020) Comparative Study of Transcriptomics-Based Scoring Metrics for the Epithelial-Hybrid-Mesenchymal Spectrum. Front. Bioeng. Biotechnol. 8:220. doi: 10.3389/fbioe.2020.00220
