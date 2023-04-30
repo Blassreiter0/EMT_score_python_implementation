@@ -24,17 +24,31 @@ gse = GEOparse.get_GEO(geo=input_gseid, destdir="./geodata")
 # make a table of all gsm samples with their microarray data
 gse_table = gse.pivot_samples('VALUE')
 
-# download the platform from GEO
-gpl_id = gse.metadata['platform_id'][0]
-# gpl_id = "GPL570"
-gpl = GEOparse.get_GEO(geo=gpl_id, destdir='./geodata')
 
-# make the annotation data
-annot_table = gpl.table
+try:
+    # download the platform from GEO
+    gpl_id = gse.metadata['platform_id'][0]
+    
+    gpl = GEOparse.get_GEO(geo=gpl_id, destdir='./geodata')
+
+    # make the annotation data
+    annot_table = gpl.table
+
+    # merge the two tables based on the 'ID_REF' column in the gsm_table and the 'ID' column in the annot_table
+    merged_table = gse_table.merge(annot_table[['ID', 'Gene Symbol']], left_on='ID_REF', right_on='ID')
 
 
-# merge the two tables based on the 'ID_REF' column in the gsm_table and the 'ID' column in the annot_table
-merged_table = gse_table.merge(annot_table[['ID', 'Gene Symbol']], left_on='ID_REF', right_on='ID')
+except ZeroDivisionError:
+    print("Faced some problem in getting the GPL annotation table. Using the default annotation table of GPL570")
+    gpl_id = "GPL570"
+    gpl = GEOparse.get_GEO(geo=gpl_id, destdir='./geodata')
+
+    # make the annotation data
+    annot_table = gpl.table
+
+    # merge the two tables based on the 'ID_REF' column in the gsm_table and the 'ID' column in the annot_table
+    merged_table = gse_table.merge(annot_table[['ID', 'Gene Symbol']], left_on='ID_REF', right_on='ID')
+    
 
 # move last 2 columns to the front.
 cols = merged_table.columns.tolist()
