@@ -38,7 +38,7 @@ try:
     merged_table = gse_table.merge(annot_table[['ID', 'Gene Symbol']], left_on='ID_REF', right_on='ID')
 
 
-except ZeroDivisionError:
+except Exception as e:
     print("Faced some problem in getting the GPL annotation table. Using the default annotation table of GPL570")
     gpl_id = "GPL570"
     gpl = GEOparse.get_GEO(geo=gpl_id, destdir='./geodata')
