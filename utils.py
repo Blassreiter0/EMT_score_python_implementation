@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from scipy.stats import kstest
+from scipy.stats import kstest,pearsonr
 import os
 import matplotlib.pyplot as plt
 import MLR_function
@@ -296,22 +296,38 @@ def MLRScore(geneExpMat,input_gseid,annot_table):
 
 
 
+
 def plot_76GSvsKS(result_76GS, result_KS,result_MLR,input_gseid):
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
+    result_76GS['GS76'] = pd.to_numeric(result_76GS['GS76'])
+    result_KS['KS'] = pd.to_numeric(result_KS['KS'])
+    result_MLR['MLR'] = pd.to_numeric(result_MLR['MLR'])
 
-
-    ax1.scatter(result_76GS['GS76'],result_KS['KS'], marker='*', color='black')
+    R,pval = pearsonr(result_76GS['GS76'],result_KS['KS'])
+    ax1.scatter(result_76GS['GS76'],result_KS['KS'], marker='*', color='black', label = "R = " + str(R) + " and p = " + str(pval))
     ax1.set_xlabel('EMT Score (76GS)')
     ax1.set_ylabel('EMT Score (KS)')
+    slope, intercept = np.polyfit(result_76GS['GS76'], result_KS['KS'], 1)
+    ax1.legend()
+    ax1.plot(result_76GS['GS76'], slope * result_76GS['GS76'] + intercept, color='red')
 
-    ax2.scatter(result_76GS['GS76'],result_MLR['MLR'], marker='*', color='black')
+    R,pval = pearsonr(result_76GS['GS76'],result_MLR['MLR'])
+    ax2.scatter(result_76GS['GS76'],result_MLR['MLR'], marker='*', color='black', label = "R = " + str(R) + " and p = " + str(pval))
     ax2.set_xlabel('EMT Score (76GS)')
     ax2.set_ylabel('EMT Score (MLR)')
+    slope, intercept = np.polyfit(result_76GS['GS76'], result_MLR['MLR'], 1)
+    ax2.legend()
+    ax2.plot(result_76GS['GS76'], slope * result_76GS['GS76'] + intercept, color='red')
 
-    ax3.scatter(result_MLR['MLR'],result_KS['KS'], marker='*', color='black')
+    R,pval = pearsonr(result_MLR['MLR'],result_KS['KS'])
+    ax3.scatter(result_MLR['MLR'],result_KS['KS'], marker='*', color='black', label = "R = " + str(R) + " and p = " + str(pval))
     ax3.set_xlabel('EMT Score (MLR)')
     ax3.set_ylabel('EMT Score (KS)')
+    slope, intercept = np.polyfit(result_MLR['MLR'], result_KS['KS'], 1)
+    ax3.legend()
+    ax3.plot(result_MLR['MLR'], slope * result_MLR['MLR'] + intercept, color='red')
+
 
     fig.suptitle('EMT scores coorelation')
 
@@ -320,4 +336,5 @@ def plot_76GSvsKS(result_76GS, result_KS,result_MLR,input_gseid):
         os.makedirs(outfile)
     plt.savefig(outfile +'/EMT_results_correlation.png')
     plt.close()
+
 
