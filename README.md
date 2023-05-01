@@ -6,9 +6,9 @@ This project takes a GSEID as input and downloads the GSE dataset and its annota
 ## Installation
 
 Make sure you have matlab runtime R2023a installed on your device. It can be installed from:-
-'''
+
 https://in.mathworks.com/products/compiler/matlab-runtime.html
-'''
+
 
 Clone the repsitory
 ```
