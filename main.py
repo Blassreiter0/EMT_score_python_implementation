@@ -10,7 +10,7 @@ import subprocess
 
 # installing necessary python packages.
 os.chdir('./default_data')
-subprocess.call(['python', 'setup.py', 'install'])
+subprocess.call(['sudo', 'python3', 'setup.py', 'install'])
 os.chdir('..')
 
 
